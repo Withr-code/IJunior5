@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Thief : MonoBehaviour
 {
@@ -21,7 +19,6 @@ public class Thief : MonoBehaviour
 
     public void ChangeDirection()
     {
-        _currentStrength *= -1;
-        _maxStrength *= -1;
+        _maxDelta *= -1;
     }
 }

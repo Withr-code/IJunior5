@@ -1,42 +1,49 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
+
+[RequireComponent(typeof(AudioSource))]
 
 public class Alarm : MonoBehaviour
 {
-    [SerializeField] private Transform _thiefTransform;
-    [SerializeField] private Transform _endPosition;
-    [SerializeField] private UnityEvent _opened;
-    [SerializeField] private float _timeToFade;
+    [SerializeField] private Transform _endPoint;
 
+    public UnityEvent Opened;
+
+    private Thief _thief;
     private AudioSource _audioSource;
-    private float _endPoint;
-    private float _target;
 
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
-        _endPoint = _endPosition.position.x;
-        _target = transform.position.x;
+    }
+
+    private void Start()
+    {
+        _audioSource.playOnAwake = false;
+        _audioSource.volume = 0;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.TryGetComponent<Thief>(out Thief thief))
+        {
+            _thief = thief;
+            Opened?.Invoke();
+        }
     }
 
     private void Update()
     {
-        if (transform.position.x < _thiefTransform.position.x)
-        {
-            _opened?.Invoke();
-        }
-
-        Fade();
+        if (_thief != null)
+            Fade(_thief.transform.position.x, transform.position.x, _endPoint.position.x);
     }
 
-    private void Fade()
+    private void Fade(float thiefPositionX, float target, float endPositionX)
     {
-        if (_thiefTransform.position.x < _target)
-            _audioSource.volume = (_thiefTransform.position.x - _endPoint) / (_target - _endPoint);
+        if (thiefPositionX < target)
+            _audioSource.volume = (thiefPositionX - endPositionX) / (target - endPositionX);
         else
-            _audioSource.volume = (_target * 2 - _endPoint  - _thiefTransform.position.x) / (_target - _endPoint);
+            _audioSource.volume = (target * 2 - endPositionX - thiefPositionX) / (target - endPositionX);
 
         if (_audioSource.volume < 0)
             _audioSource.volume = 0;
