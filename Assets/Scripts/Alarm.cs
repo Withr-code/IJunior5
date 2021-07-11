@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(AudioSource))]
@@ -7,10 +8,10 @@ public class Alarm : MonoBehaviour
 {
     [SerializeField] private Transform _endPoint;
 
-    public UnityEvent Opened;
-
     private Thief _thief;
     private AudioSource _audioSource;
+
+    public UnityEvent Opened;
 
     private void Awake()
     {
@@ -25,27 +26,27 @@ public class Alarm : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.TryGetComponent<Thief>(out Thief thief))
+        if (collision.gameObject.TryGetComponent<Thief>(out Thief thief))
         {
             _thief = thief;
             Opened?.Invoke();
         }
     }
 
-    private void Update()
+    private IEnumerator Fade(float doorPositionX, float endPositionX)
     {
-        if (_thief != null)
-            Fade(_thief.transform.position.x, transform.position.x, _endPoint.position.x);
+        while (_thief.transform.position.x > endPositionX)
+        {
+            _audioSource.volume = (_thief.transform.position.x - endPositionX) / (doorPositionX - endPositionX);
+
+            yield return null;
+        }
+
+        _audioSource.volume = 0;
     }
 
-    private void Fade(float thiefPositionX, float target, float endPositionX)
+    public void StartFade()
     {
-        if (thiefPositionX < target)
-            _audioSource.volume = (thiefPositionX - endPositionX) / (target - endPositionX);
-        else
-            _audioSource.volume = (target * 2 - endPositionX - thiefPositionX) / (target - endPositionX);
-
-        if (_audioSource.volume < 0)
-            _audioSource.volume = 0;
+        StartCoroutine(Fade(transform.position.x, _endPoint.position.x));
     }
 }

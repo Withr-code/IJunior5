@@ -232,6 +232,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &298867043 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5851422161415599952, guid: eca074fdb43f98b419a7d91ac8265074,
+    type: 3}
+  m_PrefabInstance: {fileID: 5851422160889831741}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298867041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c40bf9916533ff46a6f739f307357e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,12 +379,12 @@ PrefabInstance:
     - target: {fileID: 619363291114162484, guid: a5212f10d7d91a442819882fc1e83901,
         type: 3}
       propertyPath: _maxStrength
-      value: 0.3
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 619363291114162484, guid: a5212f10d7d91a442819882fc1e83901,
         type: 3}
       propertyPath: _maxDelta
-      value: 0.3
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 619363291114162484, guid: a5212f10d7d91a442819882fc1e83901,
         type: 3}
@@ -497,7 +509,7 @@ PrefabInstance:
     - target: {fileID: 5851422161415599952, guid: eca074fdb43f98b419a7d91ac8265074,
         type: 3}
       propertyPath: Opened.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5851422161415599952, guid: eca074fdb43f98b419a7d91ac8265074,
         type: 3}
@@ -612,6 +624,31 @@ PrefabInstance:
     - target: {fileID: 5851422161415599952, guid: eca074fdb43f98b419a7d91ac8265074,
         type: 3}
       propertyPath: Opened.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5851422161415599952, guid: eca074fdb43f98b419a7d91ac8265074,
+        type: 3}
+      propertyPath: Opened.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5851422161415599952, guid: eca074fdb43f98b419a7d91ac8265074,
+        type: 3}
+      propertyPath: Opened.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5851422161415599952, guid: eca074fdb43f98b419a7d91ac8265074,
+        type: 3}
+      propertyPath: Opened.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 298867043}
+    - target: {fileID: 5851422161415599952, guid: eca074fdb43f98b419a7d91ac8265074,
+        type: 3}
+      propertyPath: Opened.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: StartFade
+      objectReference: {fileID: 0}
+    - target: {fileID: 5851422161415599952, guid: eca074fdb43f98b419a7d91ac8265074,
+        type: 3}
+      propertyPath: Opened.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5851422161415599958, guid: eca074fdb43f98b419a7d91ac8265074,
